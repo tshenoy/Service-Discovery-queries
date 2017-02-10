@@ -1,0 +1,24 @@
+CREATE SCHEMA SERVICEDISCOVERYDB;
+USE SERVICEDISCOVERYDB;
+
+CREATE TABLE servicedetails (
+	ServiceID INT PRIMARY KEY AUTO_INCREMENT,
+	ServiceName VARCHAR(20),
+	SerDiQueL TEXT
+	
+) ;
+
+CREATE TABLE sepdetails (
+	SEPID INT PRIMARY KEY AUTO_INCREMENT,
+	servicename VARCHAR(50),
+	SerDiQueL TEXT,
+	contextPath TEXT
+	
+);
+
+CREATE TABLE matchscore (
+	ServiceID INT,
+	SEPID INT,
+	score DOUBLE
+);
+

@@ -1,0 +1,89 @@
+<root>
+<StructuralQuery>
+
+	<Message name='RequestMessage' >
+		<Part name='type1' type='int' />	
+		<Part name='type2' type='float' />	
+	</Message>
+
+	<Message name='ResponseMessage' >
+		<Part name='jokes' type='String' />
+	</Message>
+
+	<Operation name='getJokes'>
+		<Input message='RequestMessage' name='Request' />
+		<Output message='ResponseMessage' name='Response' />
+	</Operation>
+
+</StructuralQuery>
+
+
+
+
+
+
+<BehaviourQuery>
+	<Requires>
+		<MemberDescription ID='login' opName='getJokes' />		<!-- opName is the name of the operation described in structural query -->
+	</Requires>
+
+	<Expression>
+		<Condition>
+			<GuaranteedMember IDREF='getJokes' />
+		</Condition>
+	</Expression>
+
+	<Sequence ID='pay'>
+		<Member IDREF='getJokes' />
+
+	</Sequence>
+
+	<OccursBefore>
+		<Member1 IDREF='getJokes' />
+
+	</OccursBefore>
+	
+</BehaviourQuery>
+
+
+
+
+<Constraints>
+
+<ConstraintQuery name='C1' type='HARD' contextual='false'>
+	
+	<LogicalExpression>
+		<Condition relation='EQUAL-TO'>
+			<Operand1 name='QOS' type='String' />
+			<Operand2 constant='true' value='POPSO' />
+		</Condition>
+	</LogicalExpression>
+
+</ConstraintQuery>
+
+
+<ConstraintQuery name='C2' type='SOFT' contextual='false'>
+	<LogicalExpression>
+		<Condition relation='LESSER-THAN'>
+			<Operand1 name='COST' type='double' />
+			<Operand2 constant='true' value='4000' />
+		</Condition>
+	</LogicalExpression>
+
+
+</ConstraintQuery>
+
+
+<ConstraintQuery name='C3' type='SOFT' contextual='true'>
+	<LogicalExpression>
+		<Condition relation='LESSER-THAN'>
+			<Operand1 name='RESPONSETIME' type='double' />
+			<Operand2 constant='true' value='3.5' />
+		</Condition>
+	</LogicalExpression>
+
+</ConstraintQuery>
+
+</Constraints>
+
+</root>

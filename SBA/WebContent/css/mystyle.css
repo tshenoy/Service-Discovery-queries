@@ -1,0 +1,34 @@
+* {
+	font-family: helvetica;
+}
+
+.main {
+	width: 60%;
+	padding-left: 20%;
+	padding-right: 20%;
+}
+
+body {
+	background-color: lightgray;
+}
+
+.content {
+	background: url(../image/bg2.jpg) no-repeat;
+	background-color: white;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+.desc {
+	padding: 20px;
+	text-align: justify;
+	line-height: 1.5;
+}
+
+.desc2 {
+	padding: 20px;
+	font-size: 18px;
+	font-weight: bold;
+}

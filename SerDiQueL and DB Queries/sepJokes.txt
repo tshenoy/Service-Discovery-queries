@@ -1,0 +1,50 @@
+<root>
+<StructuralQuery>
+
+	<Message name='RequestMessage' >
+		<Part name='type1' type='int' />	
+		<Part name='type2' type='float' />	
+	</Message>
+
+	<Message name='ResponseMessage' >
+		<Part name='jokes' type='String' />
+	</Message>
+
+	<Operation name='getJokes'>
+		<Input message='RequestMessage' name='Request' />
+		<Output message='ResponseMessage' name='Response' />
+	</Operation>
+
+</StructuralQuery>
+
+
+
+
+
+
+<BehaviourQuery>
+	<Requires>
+		<MemberDescription ID='login' opName='getJokes' />		<!-- opName is the name of the operation described in structural query -->
+	</Requires>
+
+	<Expression>
+		<Condition>
+			<GuaranteedMember IDREF='getJokes' />
+		</Condition>
+	</Expression>
+
+	<Sequence ID='pay'>
+		<Member IDREF='getJokes' />
+
+	</Sequence>
+
+	<OccursBefore>
+		<Member1 IDREF='getJokes' />
+
+	</OccursBefore>
+	
+</BehaviourQuery>
+
+
+
+</root>

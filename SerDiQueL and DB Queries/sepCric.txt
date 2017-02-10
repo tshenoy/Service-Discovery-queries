@@ -1,0 +1,45 @@
+<root>
+<StructuralQuery>
+	<Message name='RequestMessage' >
+		<Part name='type1' type='double' />	
+		<Part name='type2' type='float' />	
+	</Message>
+	<Message name='ResponseMessage' >
+		<Part name='score' type='String' />
+	</Message>
+
+	<Operation name='getScores'>
+		<Input message='RequestMessage' name='Request' />
+		<Output message='ResponseMessage' name='Response' />
+	</Operation>
+
+</StructuralQuery>
+
+
+
+
+
+
+<BehaviourQuery>
+	<Requires>
+		<MemberDescription ID='login' opName='getScores' />		
+	</Requires>
+
+	<Expression>
+		<Condition>
+			<GuaranteedMember IDREF='getScores' />
+		</Condition>
+	</Expression>
+
+	<Sequence ID='pay'>
+		<Member IDREF='getScores' />
+
+	</Sequence>
+
+	<OccursBefore>
+		<Member1 IDREF='getScores' />
+
+	</OccursBefore>
+	
+</BehaviourQuery>
+</root>
